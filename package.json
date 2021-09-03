@@ -1,6 +1,6 @@
 {
-  "name": "my-vite-app",
-  "version": "0.0.0",
+  "name": "vue3-vite-demo",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
