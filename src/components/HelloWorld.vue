@@ -21,11 +21,12 @@
   <Button color="#7232dd">单色按钮</Button>
   <Button color="#7232dd" plain>单色按钮</Button>
   <Button color="linear-gradient(to right, #ff6034, #ee0a24)">渐变色按钮</Button>
+  <ContactCard type="add" @click="onAdd" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Button, CouponCell, Popup, CouponList } from 'vant';
+import { Button, CouponCell, Popup, CouponList, ContactCard } from 'vant';
 
 defineProps<{ msg: string }>()
 
@@ -57,6 +58,8 @@ const onExchange = (code: any) => {
   coupons.value.push(coupon);
 };
 const disabledCoupons = [coupon]
+
+const onAdd = () => alert('新增');
 </script>
 
 
