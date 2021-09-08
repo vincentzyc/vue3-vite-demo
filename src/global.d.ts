@@ -1,3 +1,3 @@
-interface Window {
-  html2canvas(): void
-}
+// interface Window {
+//   html2canvas(): void
+// }
