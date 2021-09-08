@@ -20,13 +20,17 @@
   </Popup>
   <Button color="#7232dd">单色按钮</Button>
   <Button color="#7232dd" plain>单色按钮</Button>
-  <Button color="linear-gradient(to right, #ff6034, #ee0a24)">html2canvas</Button>
+  <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
   <ContactCard type="add" @click="onAdd" />
+  <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
+    <div id="canvasWrap"></div>
+  </Popup>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList, ContactCard } from 'vant';
+import html2canvas from "html2canvas"
 
 defineProps<{ msg: string }>()
 
@@ -46,9 +50,10 @@ const coupon = {
   unitDesc: '元',
 };
 
-const coupons = ref([coupon]);
-const showList = ref(false);
-const chosenCoupon = ref(-1);
+const coupons = ref([coupon])
+const showList = ref(false)
+const showCanvas = ref(false)
+const chosenCoupon = ref(-1)
 
 const onChange = (index: number) => {
   showList.value = false;
@@ -60,6 +65,23 @@ const onExchange = (code: any) => {
 const disabledCoupons = [coupon]
 
 const onAdd = () => alert('新增');
+const pageCanvas = () => {
+  const elApp = document.body
+  if (elApp) {
+    html2canvas(elApp, {
+      allowTaint: true,
+      useCORS: true //尝试使用 CORS 从服务器加载图像
+    }).then(async canvas => {
+      showCanvas.value = true;
+      await nextTick()
+      const canvasWrap = document.getElementById("canvasWrap")
+      canvasWrap?.appendChild(canvas)
+      // const image = new Image()
+      // image.src = canvas.toDataURL("image/png")
+      // console.log(image)
+    });
+  }
+}
 </script>
 
 
