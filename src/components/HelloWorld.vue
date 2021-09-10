@@ -22,6 +22,7 @@
   <Button color="#7232dd" plain>单色按钮</Button>
   <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
   <ContactCard type="add" @click="onAdd" />
+  <ContactCard type="edit" :tel="tel" :name="name" @click="onEdit" />
   <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
     <div id="canvasWrap"></div>
   </Popup>
@@ -29,7 +30,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
-import { Button, CouponCell, Popup, CouponList, ContactCard } from 'vant';
+import { Toast, Button, CouponCell, Popup, CouponList, ContactCard } from 'vant';
 import html2canvas from "html2canvas"
 
 defineProps<{ msg: string }>()
@@ -49,6 +50,10 @@ const coupon = {
   valueDesc: '1.5',
   unitDesc: '元',
 };
+
+const tel = ref('13000000000');
+const name = ref('张三');
+const onEdit = () => Toast('编辑');
 
 const coupons = ref([coupon])
 const showList = ref(false)
