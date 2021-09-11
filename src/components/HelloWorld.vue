@@ -69,7 +69,7 @@ const onExchange = (code: any) => {
 };
 const disabledCoupons = [coupon]
 
-const onAdd = () => alert('新增');
+const onAdd = () => Toast('新增');
 const pageCanvas = () => {
   const elApp = document.body
   if (elApp) {
