@@ -21,8 +21,9 @@
   <Button color="#7232dd">单色按钮</Button>
   <Button color="#7232dd" plain>单色按钮</Button>
   <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
-  <ContactCard type="add" @click="onAdd" />
   <ContactCard type="edit" v-for="item in nameCards" :tel="item.tel" :name="item.name" @click="onEdit" />
+  <ContactCard type="add" @click="onAdd" />
+
   <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
     <div id="canvasWrap"></div>
   </Popup>
@@ -51,12 +52,20 @@ const coupon = {
   unitDesc: '元',
 };
 
-const nameCards = [{
-  tel:'13000000000',
-  name:'张三'
-}]
+const nameCards = ref([{
+  tel: '13000000000',
+  name: '张三'
+}])
 
 const onEdit = () => Toast('编辑');
+const onAdd = () => {
+  const nLength = nameCards.value.length
+  nameCards.value.push({
+    tel: '1881234567' + nLength,
+    name: '张三' + nLength
+  })
+  Toast('新增成功');
+}
 
 const coupons = ref([coupon])
 const showList = ref(false)
@@ -72,7 +81,6 @@ const onExchange = (code: any) => {
 };
 const disabledCoupons = [coupon]
 
-const onAdd = () => Toast('新增');
 const pageCanvas = () => {
   const elApp = document.body
   if (elApp) {
