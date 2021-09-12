@@ -22,7 +22,7 @@
   <Button color="#7232dd" plain>单色按钮</Button>
   <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
   <ContactCard type="add" @click="onAdd" />
-  <ContactCard type="edit" :tel="tel" :name="name" @click="onEdit" />
+  <ContactCard type="edit" v-for="item in nameCards" :tel="item.tel" :name="item.name" @click="onEdit" />
   <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
     <div id="canvasWrap"></div>
   </Popup>
@@ -51,8 +51,11 @@ const coupon = {
   unitDesc: '元',
 };
 
-const tel = ref('13000000000');
-const name = ref('张三');
+const nameCards = [{
+  tel:'13000000000',
+  name:'张三'
+}]
+
 const onEdit = () => Toast('编辑');
 
 const coupons = ref([coupon])
