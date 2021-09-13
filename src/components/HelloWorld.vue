@@ -20,10 +20,8 @@
   </Popup>
   <Button color="#7232dd">单色按钮</Button>
   <Button color="#7232dd" plain>单色按钮</Button>
-  <ContactCard type="edit" v-for="item in nameCards" :tel="item.tel" :name="item.name" @click="onEdit" />
-  <ContactCard type="add" @click="onAdd" />
-  <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
 
+  <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
   <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
     <div id="canvasWrap"></div>
   </Popup>
@@ -31,7 +29,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
-import { Toast, Button, CouponCell, Popup, CouponList, ContactCard } from 'vant';
+import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
 
 defineProps<{ msg: string }>()
@@ -51,21 +49,6 @@ const coupon = {
   valueDesc: '1.5',
   unitDesc: '元',
 };
-
-const nameCards = ref([{
-  tel: '13000000000',
-  name: '张三'
-}])
-
-const onEdit = () => Toast('编辑');
-const onAdd = () => {
-  const nLength = nameCards.value.length
-  nameCards.value.push({
-    tel: '1881234567' + nLength,
-    name: '张三' + nLength
-  })
-  Toast('新增成功');
-}
 
 const coupons = ref([coupon])
 const showList = ref(false)
