@@ -8,11 +8,11 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import HelloWorld from './components/HelloWorld.vue'
 
-window.addHistoryListener('history', function () {
-  console.log('窗口history改变，我也听到了')// 可绑定多个监听事件
+window.addHistoryListener(function () {
+  console.log('窗口history改变，我收到了')// 可绑定多个监听事件
   console.log(history)
 })
-// history.pushState({foo：bar}, 'title', '/car')
+// history.pushState({foo:'11'}, 'title', '?id=car')
 </script>
 
 <style>
