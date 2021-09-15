@@ -1,4 +1,4 @@
 interface Window {
-  addHistoryListener: (event: string, fn: () => void) => void
+  addHistoryListener: (fn: () => void) => void
   // html2canvas(): void
 }
