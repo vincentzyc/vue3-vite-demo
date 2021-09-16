@@ -1,27 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <!-- <transition name="van-fade"> -->
+  <div>
+    <component v-if="curPgae" :is="curPgae" />
+  </div>
+  <!-- </transition> -->
 </template>
 
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { shallowRef, defineAsyncComponent } from "vue"
+import { pageList, routerPush } from "./router"
+import { getUrlParam } from "./utils"
+import Comp404 from "./views/404.vue"
 
-window.addHistoryListener(function () {
-  console.log('窗口history改变，我收到了')// 可绑定多个监听事件
-  console.log(history)
-})
-// history.pushState({foo:'11'}, 'title', '?id=car')
-</script>
+let curPgae = shallowRef("")
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+function getCurPage(history: History) {
+  const page = getUrlParam('page') || 'home'
+  const comp = pageList.find(v => v.name === page)
+  if (comp) {
+    const AsyncComp = defineAsyncComponent(() => import(/* @vite-ignore */comp.component))
+    if (AsyncComp) curPgae.value = AsyncComp
+  } else {
+    curPgae.value = Comp404
+  }
 }
-</style>
+getCurPage(history)
+
+window.addHistoryListener(() => getCurPage(history))
+</script>
