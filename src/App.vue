@@ -1,30 +1,31 @@
 <template>
-  <!-- <transition name="van-fade"> -->
-  <div>
-    <component v-if="curPgae" :is="curPgae" />
-  </div>
-  <!-- </transition> -->
+  <component v-if="curPgae" :is="curPgae" />
 </template>
 
 <script setup lang="ts">
-import { shallowRef, defineAsyncComponent } from "vue"
-import { pageList, routerPush } from "./router"
+import { shallowRef } from "vue"
+import { pageList } from "./router"
 import { getUrlParam } from "./utils"
-import Comp404 from "./views/404.vue"
 
-let curPgae = shallowRef("")
+let curPgae = shallowRef()
 
-function getCurPage(history: History) {
+function getCurPage() {
   const page = getUrlParam('page') || 'home'
   const comp = pageList.find(v => v.name === page)
   if (comp) {
-    const AsyncComp = defineAsyncComponent(() => import(/* @vite-ignore */comp.component))
-    if (AsyncComp) curPgae.value = AsyncComp
+    curPgae.value = comp.component ? comp.component : ''
   } else {
-    curPgae.value = Comp404
+    const comp404 = pageList.find(v => v.name === '404')
+    if (comp404) {
+      curPgae.value = comp404.component ? comp404.component : ''
+    } else {
+      curPgae.value = ''
+    }
   }
 }
-getCurPage(history)
+getCurPage()
 
-window.addHistoryListener(() => getCurPage(history))
+window.addHistoryListener(() => getCurPage())
+window.addEventListener('popstate', () => getCurPage())
+
 </script>
