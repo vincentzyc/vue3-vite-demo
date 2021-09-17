@@ -6,6 +6,7 @@
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+
   <!-- 优惠券单元格 -->
   <CouponCell :coupons="coupons" :chosen-coupon="chosenCoupon" @click="showList = true" />
   <!-- 优惠券列表 -->
@@ -19,7 +20,7 @@
     />
   </Popup>
   <Button color="#7232dd" @click="pushqq()">pushqq</Button>
-  <Button color="#7232dd" plain>单色按钮</Button>
+  <Button color="#7232dd" plain @click="gohaha">gohaha</Button>
   <Button color="linear-gradient(to right, #ff6034, #ee0a24)" @click="pageCanvas()">html2canvas</Button>
 
   <Popup v-model:show="showCanvas" round position="center" style="height: 90%; padding-top: 4px;">
@@ -31,10 +32,15 @@
 import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
+import { routerPush } from "../router";
 
 // defineProps<{ msg: string }>()
 
 const count = ref(0)
+
+const gohaha = () => {
+  routerPush('haha')
+}
 
 const coupon = {
   id: 111,
