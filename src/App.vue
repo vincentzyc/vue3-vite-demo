@@ -6,7 +6,7 @@
 import { shallowRef } from "vue"
 import { getCurPage } from "./router"
 
-let curPgae = shallowRef()
+const curPgae = shallowRef()
 
 curPgae.value = getCurPage()
 
