@@ -16,12 +16,12 @@ export const pageList = [{
   component: defineAsyncComponent(() => import("../views/404.vue"))
 }]
 
-export function routerPush(name: string) {
-  history.pushState({ name: name }, '', '?page=' + name)
+export function routerPush(name: string, params?: string) {
+  history.pushState({ name: name }, '', `?page=${name}&${params}`)
 }
 
-export function routerReplace(name: string) {
-  history.replaceState({ name: name }, '', '?page=' + name)
+export function routerReplace(name: string, params?: string) {
+  history.replaceState({ name: name }, '', `?page=${name}&${params}`)
 }
 
 /**
