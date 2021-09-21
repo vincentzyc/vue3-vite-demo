@@ -1,20 +1,25 @@
 type UrlParamBack = null | string | Record<string, any>
 
-import { defineAsyncComponent } from "vue"
+export type ListType = {
+  name: string;
+  component: any;
+}[]
 
-export const pageList = [{
-  name: "home",
-  component: defineAsyncComponent(() => import("../views/home.vue"))
-}, {
-  name: "test",
-  component: defineAsyncComponent(() => import("../views/test.vue"))
-}, {
-  name: "haha",
-  component: defineAsyncComponent(() => import("../views/haha.vue"))
-}, {
-  name: "404",
-  component: defineAsyncComponent(() => import("../views/404.vue"))
-}]
+// import { defineAsyncComponent } from "vue"
+
+// export const pageList = [{
+//   name: "home",
+//   component: defineAsyncComponent(() => import("../views/home.vue"))
+// }, {
+//   name: "test",
+//   component: defineAsyncComponent(() => import("../views/test.vue"))
+// }, {
+//   name: "haha",
+//   component: defineAsyncComponent(() => import("../views/haha.vue"))
+// }, {
+//   name: "404",
+//   component: defineAsyncComponent(() => import("../views/404.vue"))
+// }]
 
 export function routerPush(name: string, params?: string) {
   history.pushState({ name: name }, '', `?page=${name}&${params}`)
@@ -46,7 +51,7 @@ function getUrlParam(name: string = ''): UrlParamBack {
   return obj
 }
 
-export function getCurPage() {
+export function getCurPage(pageList: ListType) {
   const page = getUrlParam('page') || 'home'
   const comp = pageList.find(v => v.name === page)
   if (comp) {
