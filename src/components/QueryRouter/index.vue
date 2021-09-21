@@ -4,15 +4,15 @@
 
 <script setup lang="ts">
 import { shallowRef } from "vue"
-import { getCurPage } from "./router"
+import { getCurPage, ListType } from "./router"
 
-defineProps<{ list: string }>()
+const props = defineProps<{ list: ListType }>()
 
 const curPgae = shallowRef()
 
-curPgae.value = getCurPage()
+curPgae.value = getCurPage(props.list)
 
-window.addHistoryListener(() => curPgae.value = getCurPage())
-window.addEventListener('popstate', () => curPgae.value = getCurPage())
+window.addHistoryListener(() => curPgae.value = getCurPage(props.list))
+window.addEventListener('popstate', () => curPgae.value = getCurPage(props.list))
 
 </script>
