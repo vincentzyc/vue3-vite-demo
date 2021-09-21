@@ -1,6 +1,4 @@
 <template>
-  <!-- <h1>{{ msg }}</h1> -->
-
   <button type="button" @click="count++">count is: {{ count }}</button>
   <p>
     Edit
@@ -33,8 +31,6 @@ import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
 import { routerPush } from "../router";
-
-// defineProps<{ msg: string }>()
 
 const count = ref(0)
 
