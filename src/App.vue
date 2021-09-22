@@ -1,16 +1,9 @@
 <template>
-  <component v-if="curPgae" :is="curPgae" />
+  <QueryRouter :list="RouterList" />
 </template>
 
 <script setup lang="ts">
-import { shallowRef } from "vue"
-import { getCurPage } from "./router"
-
-const curPgae = shallowRef()
-
-curPgae.value = getCurPage()
-
-window.addHistoryListener(() => curPgae.value = getCurPage())
-window.addEventListener('popstate', () => curPgae.value = getCurPage())
+import QueryRouter from "./components/QueryRouter/index.vue"
+import { RouterList } from "./router"
 
 </script>
