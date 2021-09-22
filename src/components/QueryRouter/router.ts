@@ -8,11 +8,11 @@ export type ListType = {
 }[]
 
 export function routerPush(name: string, params?: string) {
-  history.pushState({ name: name }, '', `?page=${name}&${params}`)
+  history.pushState({ name: name }, '', params ? `?page=${name}&${params}` : `?page=${name}`)
 }
 
 export function routerReplace(name: string, params?: string) {
-  history.replaceState({ name: name }, '', `?page=${name}&${params}`)
+  history.replaceState({ name: name }, '', params ? `?page=${name}&${params}` : `?page=${name}`)
 }
 
 /**
