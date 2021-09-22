@@ -30,7 +30,7 @@
 import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
-import { routerPush } from "../router";
+import { routerPush } from "../components/QueryRouter/router";
 
 const count = ref(0)
 
