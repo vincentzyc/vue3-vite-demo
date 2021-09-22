@@ -1,25 +1,11 @@
+import './history'
+
 type UrlParamBack = null | string | Record<string, any>
 
 export type ListType = {
   name: string;
   component: any;
 }[]
-
-// import { defineAsyncComponent } from "vue"
-
-// export const pageList = [{
-//   name: "home",
-//   component: defineAsyncComponent(() => import("../views/home.vue"))
-// }, {
-//   name: "test",
-//   component: defineAsyncComponent(() => import("../views/test.vue"))
-// }, {
-//   name: "haha",
-//   component: defineAsyncComponent(() => import("../views/haha.vue"))
-// }, {
-//   name: "404",
-//   component: defineAsyncComponent(() => import("../views/404.vue"))
-// }]
 
 export function routerPush(name: string, params?: string) {
   history.pushState({ name: name }, '', `?page=${name}&${params}`)
