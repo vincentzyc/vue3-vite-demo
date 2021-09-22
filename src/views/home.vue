@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import { routerPush } from "../router";
+import { routerPush } from "../components/QueryRouter/router";
 
 const gotest = ()=>{
   routerPush('test')
