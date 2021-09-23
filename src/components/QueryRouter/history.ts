@@ -26,7 +26,7 @@ class PubSub {
   }
 }
 
-var historyPub = new PubSub();
+const historyPub = new PubSub();
 window.addHistoryListener = function (fn) {
   historyPub.subscribe('historyChange', fn);
 }

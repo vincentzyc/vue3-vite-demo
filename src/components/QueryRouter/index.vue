@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang="ts">
+// TODO 
+// 封装写进vue原型
 import { shallowRef } from "vue"
 import { getCurPage, ListType } from "./router"
 
