@@ -7,11 +7,11 @@
 
 
 <script lang="ts" setup>
-import { routerPush } from "../components/QueryRouter/router";
+import { QRouter } from "@/QueryRouter"
 
 const gohome = () => {
-  routerPush('home')
+  QRouter.push('home')
 }
 
-const go404 = () => routerPush('404')
+const go404 = () => QRouter.push('404')
 </script>
