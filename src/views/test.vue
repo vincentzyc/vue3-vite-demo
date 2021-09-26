@@ -30,12 +30,12 @@
 import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
-import { routerPush } from "../components/QueryRouter/router";
+import { QRouter } from "@/QueryRouter"
 
 const count = ref(0)
 
 const gohaha = () => {
-  routerPush('haha')
+  QRouter.push('haha')
 }
 
 const coupon = {

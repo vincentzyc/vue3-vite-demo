@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts" setup>
-import { routerPush } from "../components/QueryRouter/router";
+import { QRouter } from "@/QueryRouter"
 
-const gotest = ()=>{
-  routerPush('test')
+const gotest = () => {
+  QRouter.push('test')
 }
 </script>
