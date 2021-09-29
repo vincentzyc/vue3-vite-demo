@@ -31,6 +31,7 @@ import { ref, nextTick } from 'vue'
 import { Button, CouponCell, Popup, CouponList } from 'vant';
 import html2canvas from "html2canvas"
 import { QRouter } from "@/QueryRouter"
+import Axios from "@/plugins/axios"
 
 const count = ref(0)
 
@@ -77,6 +78,20 @@ const pageCanvas = () => {
       await nextTick()
       const canvasWrap = document.getElementById("canvasWrap")
       canvasWrap?.appendChild(canvas)
+
+      canvas.toBlob(blob => {
+        let formData = new FormData()
+        if (blob) {
+          let files = new File([blob], 'test.png', {type: 'png'})
+          formData.append('directoryName', 'content-h5')
+          formData.append('file', files)
+        }
+        Axios.post('https://xxx.com', formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+      })
       // const image = new Image()
       // image.src = canvas.toDataURL("image/png")
       // console.log(image)
