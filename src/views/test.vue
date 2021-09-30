@@ -103,17 +103,3 @@ const pushqq = () => {
   history.pushState(null, '', '?id=qq')
 }
 </script>
-
-
-<style scoped>
-a {
-  color: #42b983;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
-</style>
